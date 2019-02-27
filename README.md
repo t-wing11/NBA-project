@@ -37,9 +37,8 @@ In this repo is the file [`input.json`](https://raw.githubusercontent.com/scorem
     },
   ]
 }
-```
+``` 
 
-Use the [`input.json`](https://raw.githubusercontent.com/scoremedia/nba-team-viewer/master/input.json) endpoint as REST Api to retrieve NBA teams data. 
 
 ##### Requirements
 Your task is to create an Android application that has two screens; a Team list, and a Team page. Your solution may be written in Java or Kotlin (or both) whichever you feel most comfortable with. 
@@ -62,6 +61,7 @@ Your task is to create an Android application that has two screens; a Team list,
   * **Bonus:** Test your code with `UI (Instrumentation/Espresso/Robolectric) Tests`
 
 We will evaluate you on your ability to solve the problem defined in the **requirements** section as well as your choice of **design patterns**, **libraries**, and **general coding style**.
+
 
 ### Submitting a solution
 1. Download this repo
