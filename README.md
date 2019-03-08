@@ -59,7 +59,8 @@ Your task is to create an Android application that has two screens; a Team list,
 * Unit Tests
   * Write `Unit Tests` to test and verify code.  
   * **Bonus:** Write `UI (Instrumentation/Espresso/Robolectric) Tests` to test and verify UI. 
-* We will evaluate you on your ability to solve the problem defined in the **requirements** section as well as your choice of **design patterns**, **libraries**, and **general coding style**.
+
+*We will evaluate you on your ability to solve the problem defined in the **requirements** section as well as your choice of **design patterns**, **libraries**, and **general coding style**.*
 
 
 ### Submitting a solution
