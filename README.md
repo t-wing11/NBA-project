@@ -56,11 +56,10 @@ Your task is to create an Android application that has two screens; a Team list,
   * Displays information about a specific Team selected from the Team List
   * The team's `full_name`, `wins`, and `losses` must be displayed
   * The team's roster must be displayed with each Player's `first_name`, `last_name`, `position`, `number`
-* Code Coverage
-  * Test your code with `Unit Tests`.  
-  * **Bonus:** Test your code with `UI (Instrumentation/Espresso/Robolectric) Tests`
-
-We will evaluate you on your ability to solve the problem defined in the **requirements** section as well as your choice of **design patterns**, **libraries**, and **general coding style**.
+* Unit Tests
+  * Write `Unit Tests` to test and verify code.  
+  * **Bonus:** Write `UI (Instrumentation/Espresso/Robolectric) Tests` to test and verify UI. 
+* We will evaluate you on your ability to solve the problem defined in the **requirements** section as well as your choice of **design patterns**, **libraries**, and **general coding style**.
 
 
 ### Submitting a solution
