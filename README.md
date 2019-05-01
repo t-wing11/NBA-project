@@ -1,5 +1,5 @@
 # theScore "NBA Team Viewer" Interview Question
-At theScore, we're always looking for intelligent and resourceful Android developers to join our growing team. To help us evaluate new talent, we have created this take-home interview question. This question should take you no more than a few hours.
+At theScore, we're always looking for intelligent and resourceful Android developers to join our growing team. To help us evaluate new talent, we have created this take-home interview question. This challenge would take few hours to finish, we advice to read the requirement carefully. If you have any question please don't hasitate to ask. 
 
 **All candidates must complete this before the possibility of an in-person interview. During the in-person interview, your submitted project will be used as the base for questions.**
 
@@ -39,10 +39,11 @@ In this repo is the file [`input.json`](https://raw.githubusercontent.com/scorem
 }
 ``` 
 
+*We will evaluate you on your ability to solve the problem defined in the **requirements** section as well as your choice of **design patterns**, **libraries**, and **general coding style**.*
 
 ##### Requirements
 Your task is to create an Android application that has two screens; a Team list, and a Team page. Your solution may be written in Java or Kotlin (or both) whichever you feel most comfortable with. 
-
+ 
 * Request Data
   * Request NBA teams data from [`input.json`](https://raw.githubusercontent.com/scoremedia/nba-team-viewer/master/input.json) endpoint using networking framework of your choice. 
   * Implement Network caching to cache the response. 
@@ -56,11 +57,10 @@ Your task is to create an Android application that has two screens; a Team list,
   * Displays information about a specific Team selected from the Team List
   * The team's `full_name`, `wins`, and `losses` must be displayed
   * The team's roster must be displayed with each Player's `first_name`, `last_name`, `position`, `number`
-* Unit Tests
-  * Write `Unit Tests` to test and verify code.  
-  * **Bonus:** Write `UI (Instrumentation/Espresso/Robolectric) Tests` to test and verify UI. 
-
-*We will evaluate you on your ability to solve the problem defined in the **requirements** section as well as your choice of **design patterns**, **libraries**, and **general coding style**.*
+* Unit Tests (You must write valid unit tests to test your code)
+  * Write `Unit Tests` to test and verify the functionality and behaviour.  
+* **Bonus:** Ui Tests 
+  * Write `UI (Instrumentation/Espresso/Robolectric) Tests` to test and verify UI. 
 
 
 ### Submitting a solution
