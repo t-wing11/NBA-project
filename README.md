@@ -39,8 +39,6 @@ In this repo is the file [`input.json`](https://raw.githubusercontent.com/scorem
 }
 ``` 
 
-*We will evaluate you on your ability to solve the problem defined in the **requirements** section as well as your choice of **design patterns**, **libraries**, and **general coding style**.*
-
 ##### Requirements
 Your task is to create an Android application that has two screens; a Team list, and a Team page. Your solution may be written in Java or Kotlin (or both) whichever you feel most comfortable with. 
  
@@ -59,9 +57,10 @@ Your task is to create an Android application that has two screens; a Team list,
   * The team's roster must be displayed with each Player's `first_name`, `last_name`, `position`, `number`
 * Unit Tests (You must write valid unit tests to test your code)
   * Write `Unit Tests` to test and verify the functionality and behaviour.  
-* **Bonus:** Ui Tests 
+* **Bonus:** Ui Tests (No bonus if no Unit Tests written) 
   * Write `UI (Instrumentation/Espresso/Robolectric) Tests` to test and verify UI. 
 
+#### We will evaluate you on your ability to solve the problem with above requirement as well as your choice of **design patterns**, **libraries**, and **general coding style**.
 
 ### Submitting a solution
 1. Download this repo
