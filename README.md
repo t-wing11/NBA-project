@@ -56,9 +56,13 @@ Your task is to create an Android application that has two screens; a Team list,
   * The team's `full_name`, `wins`, and `losses` must be displayed
   * The team's roster must be displayed with each Player's `first_name`, `last_name`, `position`, `number`
 * Unit Tests (You must write valid unit tests to test your code)
-  * Write `Unit Tests` to test and verify the functionality and behaviour.  
-* **Bonus:** Ui Tests (No bonus if no Unit Tests written) 
-  * Write `UI (Instrumentation/Espresso/Robolectric) Tests` to test and verify UI. 
+  * Write `Unit Tests` to test and verify how data retreived using API including success, failure etc..
+  * Write `Unit Tests` to test and verify data sorting.
+  * Write `Unit Tests` to test and verify how data are managed within the app. 
+* **Bonus:** Robolectric Tests (No bonus if no Unit Tests written) 
+  * Write `Robolectric Tests` to verify correct data are binding to UI.
+  * Write `Robolectric Tests` to verify navigating from team list to team detail screen.
+  * Write `Robolectric Tests` to verify performing the sorting action updates the screen with sorted data.
 
 #### We will evaluate you on your ability to solve the problem with above requirement as well as your choice of **design patterns**, **libraries**, and **general coding style**.
 
