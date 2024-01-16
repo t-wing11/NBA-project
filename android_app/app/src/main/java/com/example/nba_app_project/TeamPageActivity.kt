@@ -1,6 +1,5 @@
 package com.example.nba_app_project
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nba_app_project.databinding.TeamPageBinding
 
-class MainActivity2 : AppCompatActivity() {
+class TeamPageActivity : AppCompatActivity() {
 
     lateinit var binding2: TeamPageBinding
     lateinit var playeradapter: PlayerAdapter
@@ -48,8 +47,8 @@ class MainActivity2 : AppCompatActivity() {
 
     fun updateTeam(intent: Intent){
         binding2.TeamName.text = team
-        binding2.wins.text = intent.getStringExtra("wins").toString()
-        binding2.losses.text = intent.getStringExtra("losses").toString()
+        binding2.wins.text = "Wins: "+intent.getStringExtra("wins").toString()
+        binding2.losses.text = "Losses: "+intent.getStringExtra("losses").toString()
     }
 
     fun playerView(){

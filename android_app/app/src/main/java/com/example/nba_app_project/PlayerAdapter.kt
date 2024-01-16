@@ -18,8 +18,7 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
     }
 
     class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-       var firstName : TextView = itemView.findViewById(R.id.First_Name)
-        var lastName : TextView = itemView.findViewById(R.id.Last_Name)
+       var Name : TextView = itemView.findViewById(R.id.First_Name)
         var position : TextView = itemView.findViewById(R.id.position)
         var number : TextView = itemView.findViewById(R.id.number)
     }
@@ -34,9 +33,8 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
-        holder.firstName.text = playerList[position].first_name
-        holder.lastName.text = playerList[position].last_name
-        holder.position.text = playerList[position].position
-        holder.number.text = playerList[position].number.toString()
+        holder.Name.text = playerList[position].first_name +" "+ playerList[position].last_name
+        holder.position.text = "Pos: "+playerList[position].position
+        holder.number.text = "Num: "+playerList[position].number.toString()
     }
 }

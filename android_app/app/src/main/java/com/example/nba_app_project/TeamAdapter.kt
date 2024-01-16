@@ -38,11 +38,11 @@ class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
         holder.teamName.text = teamList[position].full_name
-        holder.teamWins.text = teamList[position].wins.toString()
-        holder.teamLosses.text = teamList[position].losses.toString()
+        holder.teamWins.text = "W: "+ teamList[position].wins.toString()
+        holder.teamLosses.text = "L: "+teamList[position].losses.toString()
 
         holder.teamcard.setOnClickListener{
-            val intent = Intent(holder.teamcard.context, MainActivity2::class.java)
+            val intent = Intent(holder.teamcard.context, TeamPageActivity::class.java)
             intent.putExtra("team", teamList[position].full_name)
             intent.putExtra("wins", teamList[position].wins.toString())
             intent.putExtra("losses", teamList[position].losses.toString())
