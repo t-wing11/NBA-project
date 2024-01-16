@@ -8,7 +8,6 @@ data class TeamsItem(
     val wins: Int
 )
 
-
 data class Player(
     val first_name: String,
     val id: Int,

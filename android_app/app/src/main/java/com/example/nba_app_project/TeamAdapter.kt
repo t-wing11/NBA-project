@@ -1,0 +1,41 @@
+package com.example.nba_app_project
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
+
+class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
+
+    private var teamList = emptyList<TeamsItem>()
+    fun setData(teamList: List<TeamsItem>){
+        this.teamList = teamList
+        notifyDataSetChanged()
+    }
+
+    class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var teamName: TextView = itemView.findViewById(R.id.TeamName)
+        var teamWins: TextView = itemView.findViewById(R.id.wins)
+        var teamLosses: TextView = itemView.findViewById(R.id.losses)
+        var teamcard : CardView = itemView.findViewById(R.id.team_card)
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
+        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.team_card,parent,false)
+        return TeamViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return teamList.size
+    }
+
+    override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
+        holder.teamName.text = teamList[position].full_name
+        holder.teamWins.text = teamList[position].wins.toString()
+        holder.teamLosses.text = teamList[position].losses.toString()
+
+    }
+}
