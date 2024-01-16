@@ -4,41 +4,42 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.example.nba_app_project.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: TeamViewModel
-    private lateinit var teamadapter: TeamAdapter
-    private lateinit var recyclerView: RecyclerView
+    lateinit var binding1: ActivityMainBinding
+     lateinit var viewModel: TeamViewModel
+     lateinit var teamadapter: TeamAdapter
+     lateinit var recyclerView: RecyclerView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        binding1= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding1.root)
 
-        recyclerView = findViewById(R.id.recyclerview)
+        recyclerSetup(binding1)
+
+        binding1.button.setOnClickListener{
+            teamadapter.sortData()
+        }
+    }
+
+    fun recyclerSetup(binding: ViewBinding){
+        recyclerView = binding1.recyclerView
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         teamadapter= TeamAdapter()
         recyclerView.adapter = teamadapter
-
         viewModel = ViewModelProvider(this).get(TeamViewModel::class.java)
         viewModel.getTeams()
-        //test message
         viewModel.observeTeamLiveData().observe(this, Observer {
             teamadapter.setData(it)
         })
-
-
-
-
     }
-
-
 }
