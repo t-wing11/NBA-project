@@ -11,14 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
      var teamList = emptyList<TeamsItem>()
-    fun setData(teamList: List<TeamsItem>){
+    fun setData(teamList: List<TeamsItem>) {
         this.teamList = teamList
         notifyDataSetChanged()
     }
-    fun sortData(){
-        teamList = teamList.sortedBy { it.full_name  }
-        notifyDataSetChanged()
+
+    fun getSortedData(): List<TeamsItem> {
+        return teamList.sortedBy { it.full_name }
     }
+
 
     class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var teamName: TextView = itemView.findViewById(R.id.TeamName)

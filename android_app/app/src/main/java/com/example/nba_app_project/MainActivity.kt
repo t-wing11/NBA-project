@@ -7,13 +7,15 @@ import android.util.Log
 import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.example.nba_app_project.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding1: ActivityMainBinding
+     lateinit var binding1: ActivityMainBinding
      lateinit var viewModel: TeamViewModel
      lateinit var teamadapter: TeamAdapter
      lateinit var recyclerView: RecyclerView
@@ -23,12 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding1= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding1.root)
-
         recyclerSetup(binding1)
-
-        binding1.button.setOnClickListener{
-            teamadapter.sortData()
-        }
     }
 
     fun recyclerSetup(binding: ViewBinding){
@@ -40,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.getTeams()
         viewModel.observeTeamLiveData().observe(this, Observer {
             teamadapter.setData(it)
+            val sortedData = teamadapter.getSortedData()
+            teamadapter.setData(sortedData)
         })
     }
 }
