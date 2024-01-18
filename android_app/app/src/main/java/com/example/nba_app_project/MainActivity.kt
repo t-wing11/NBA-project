@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,28 +18,15 @@ class MainActivity : AppCompatActivity() {
 
      lateinit var binding1: ActivityMainBinding
      lateinit var viewModel: TeamViewModel
-     lateinit var teamadapter: TeamAdapter
-     lateinit var recyclerView: RecyclerView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding1= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding1.root)
-        recyclerSetup(binding1)
-    }
-
-    fun recyclerSetup(binding: ViewBinding){
-        recyclerView = binding1.recyclerView
-        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        teamadapter= TeamAdapter()
-        recyclerView.adapter = teamadapter
         viewModel = ViewModelProvider(this).get(TeamViewModel::class.java)
         viewModel.getTeams()
         viewModel.observeTeamLiveData().observe(this, Observer {
-            teamadapter.setData(it)
-            val sortedData = teamadapter.getSortedData()
-            teamadapter.setData(sortedData)
+            viewModel.recyclerSetup(binding1,this).setData(it as MutableList<TeamsItem>)
         })
     }
 }

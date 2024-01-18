@@ -1,22 +1,32 @@
 package com.example.nba_app_project
 
+import android.content.Context
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
+import com.example.nba_app_project.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class TeamViewModel: ViewModel() {
     private var teamLiveData = MutableLiveData<List<TeamsItem>>()
+    lateinit var recyclerView: RecyclerView
+    lateinit var teamadapter: TeamAdapter
+
+
     fun getTeams() {
         RetrofitInstance.retrofit.getTeams("poldz123/NBA-project/master/input.json").enqueue(object  :
             Callback<List<TeamsItem>> {
 
             override fun onResponse(call: Call<List<TeamsItem>>, response: Response<List<TeamsItem>>) {
                 if (response.isSuccessful){
-                    teamLiveData.postValue(response.body())
+                    val sortedList = response.body()?.sortedBy{ it.full_name}
+                    teamLiveData.postValue(sortedList!!)
                 }
                 else{
                     return
@@ -28,7 +38,32 @@ class TeamViewModel: ViewModel() {
         })
     }
 
+    fun recyclerSetup(binding: ActivityMainBinding, context: Context): TeamAdapter{
+        recyclerView = binding.recyclerView
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        teamadapter= TeamAdapter()
+        recyclerView.adapter = teamadapter
+        return teamadapter
+    }
+
+    fun onSpinnerItemSelected(selectedOption : String){
+        if (selectedOption == "Ascending"){
+            val sortedList = teamLiveData.value?.sortedBy{ it.full_name}
+            teamLiveData.postValue(sortedList!!)
+        }
+        else if (selectedOption == "Descending"){
+            val sortedList = teamLiveData.value?.sortedByDescending{ it.full_name}
+            teamLiveData.postValue(sortedList!!)
+        }
+    }
+
+
+
+
     fun observeTeamLiveData() : LiveData<List<TeamsItem>> {
+
         return teamLiveData
     }
+
+
 }

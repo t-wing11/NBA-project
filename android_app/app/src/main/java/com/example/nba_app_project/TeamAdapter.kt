@@ -4,22 +4,21 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
-     var teamList = emptyList<TeamsItem>()
-    fun setData(teamList: List<TeamsItem>) {
+     var teamList = mutableListOf<TeamsItem>()
+    fun setData(teamList: MutableList<TeamsItem>) {
         this.teamList = teamList
         notifyDataSetChanged()
     }
-
-    fun getSortedData(): List<TeamsItem> {
-        return teamList.sortedBy { it.full_name }
-    }
-
 
     class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var teamName: TextView = itemView.findViewById(R.id.TeamName)
@@ -49,7 +48,5 @@ class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
             intent.putExtra("losses", teamList[position].losses.toString())
             holder.teamcard.context.startActivity(intent)
         }
-
-
     }
 }

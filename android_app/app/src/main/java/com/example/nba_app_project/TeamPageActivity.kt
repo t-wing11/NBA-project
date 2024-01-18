@@ -25,11 +25,6 @@ class TeamPageActivity : AppCompatActivity() {
         playerView()
         getPlayerData(intent)
         updateTeam(intent)
-
-        binding2.button.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     fun getPlayerData(intent: Intent){
