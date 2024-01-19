@@ -30,7 +30,8 @@ class TeamPageActivity : AppCompatActivity() {
     fun getPlayerData(intent: Intent){
         team = intent.getStringExtra("team").toString();
         val viewModel = ViewModelProvider(this).get(TeamViewModel::class.java)
-        viewModel.getTeams()
+        val temp = "Ascending"
+        viewModel.getTeams(temp)
         viewModel.observeTeamLiveData().observe(this, Observer {
             for (i in 0..<it.size) {
                 if (it[i].full_name == team) {

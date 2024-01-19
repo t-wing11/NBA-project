@@ -10,5 +10,7 @@
     <string-array name="sort_options">
         <item>Ascending</item>
         <item>Descending</item>
+        <item>Wins</item>
+        <item>Losses</item>
     </string-array>
 </resources>

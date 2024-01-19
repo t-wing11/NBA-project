@@ -15,18 +15,27 @@ import retrofit2.Response
 
 class TeamViewModel: ViewModel() {
     private var teamLiveData = MutableLiveData<List<TeamsItem>>()
-    lateinit var recyclerView: RecyclerView
-    lateinit var teamadapter: TeamAdapter
 
-
-    fun getTeams() {
+    fun getTeams(str: String) {
         RetrofitInstance.retrofit.getTeams("poldz123/NBA-project/master/input.json").enqueue(object  :
             Callback<List<TeamsItem>> {
 
             override fun onResponse(call: Call<List<TeamsItem>>, response: Response<List<TeamsItem>>) {
                 if (response.isSuccessful){
-                    val sortedList = response.body()?.sortedBy{ it.full_name}
-                    teamLiveData.postValue(sortedList!!)
+                    when(str){
+                        "Ascending" -> {
+                            teamLiveData.postValue(response.body()?.sortedBy { it.full_name })
+                        }
+                        "Descending" -> {
+                            teamLiveData.postValue(response.body()?.sortedByDescending { it.full_name })
+                        }
+                        "Wins" -> {
+                            teamLiveData.postValue(response.body()?.sortedByDescending { it.wins })
+                        }
+                        "Losses" -> {
+                            teamLiveData.postValue(response.body()?.sortedByDescending { it.losses })
+                        }
+                    }
                 }
                 else{
                     return
@@ -37,29 +46,6 @@ class TeamViewModel: ViewModel() {
             }
         })
     }
-
-    fun recyclerSetup(binding: ActivityMainBinding, context: Context): TeamAdapter{
-        recyclerView = binding.recyclerView
-        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        teamadapter= TeamAdapter()
-        recyclerView.adapter = teamadapter
-        return teamadapter
-    }
-
-    fun onSpinnerItemSelected(selectedOption : String){
-        if (selectedOption == "Ascending"){
-            val sortedList = teamLiveData.value?.sortedBy{ it.full_name}
-            teamLiveData.postValue(sortedList!!)
-        }
-        else if (selectedOption == "Descending"){
-            val sortedList = teamLiveData.value?.sortedByDescending{ it.full_name}
-            teamLiveData.postValue(sortedList!!)
-        }
-    }
-
-
-
-
     fun observeTeamLiveData() : LiveData<List<TeamsItem>> {
 
         return teamLiveData
