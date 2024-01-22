@@ -13,4 +13,6 @@
         <item>Wins</item>
         <item>Losses</item>
     </string-array>
+    <string name="teamPageWins">Wins: %1$s </string>
+    <string name="teamPageLosses">Losses: %1$s </string>
 </resources>

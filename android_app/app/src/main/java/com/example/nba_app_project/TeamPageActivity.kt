@@ -27,24 +27,24 @@ class TeamPageActivity : AppCompatActivity() {
         updateTeam(intent)
     }
 
-    fun getPlayerData(intent: Intent){
-        team = intent.getStringExtra("team").toString();
+    private fun getPlayerData(intent: Intent){
+        team = intent.getStringExtra("team").toString()
         val viewModel = ViewModelProvider(this).get(TeamViewModel::class.java)
         val temp = "Ascending"
         viewModel.getTeams(temp)
-        viewModel.observeTeamLiveData().observe(this, Observer {
-            for (i in 0..<it.size) {
+        viewModel.observeTeamLiveData().observe(this) {
+            for (i in it.indices) {
                 if (it[i].full_name == team) {
                     playeradapter.setData(it, i)
                 }
             }
-        })
+        }
     }
 
     fun updateTeam(intent: Intent){
-        binding2.TeamName.text = team
-        binding2.wins.text = "Wins: "+intent.getStringExtra("wins").toString()
-        binding2.losses.text = "Losses: "+intent.getStringExtra("losses").toString()
+        binding2.TeamName.text = intent.getStringExtra("team")
+        binding2.wins.text = getString(R.string.teamPageWins,intent.getStringExtra("wins").toString())
+        binding2.losses.text = getString(R.string.teamPageLosses,intent.getStringExtra("losses").toString())
     }
 
     fun playerView(){

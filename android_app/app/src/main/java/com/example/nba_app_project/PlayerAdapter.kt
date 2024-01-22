@@ -29,11 +29,11 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return teamList.size
+        return playerList.size
     }
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
-        holder.Name.text = playerList[position].first_name +" "+ playerList[position].last_name
+        "${playerList[position].first_name} ${playerList[position].last_name}".also { holder.Name.text = it }
         holder.position.text = "Pos: "+playerList[position].position
         holder.number.text = "Num: "+playerList[position].number.toString()
     }
