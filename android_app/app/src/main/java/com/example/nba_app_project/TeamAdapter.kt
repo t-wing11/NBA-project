@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
-     var teamList = mutableListOf<TeamsItem>()
+     private var teamList = mutableListOf<TeamsItem>()
     fun setData(teamList: MutableList<TeamsItem>) {
         this.teamList = teamList
         notifyDataSetChanged()
@@ -46,6 +46,8 @@ class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
             intent.putExtra("team", teamList[position].full_name)
             intent.putExtra("wins", teamList[position].wins.toString())
             intent.putExtra("losses", teamList[position].losses.toString())
+            //send player info
+            intent.putParcelableArrayListExtra("players", ArrayList(teamList[position].players))
             holder.teamcard.context.startActivity(intent)
         }
     }

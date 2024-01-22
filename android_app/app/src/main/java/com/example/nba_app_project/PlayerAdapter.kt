@@ -1,5 +1,6 @@
 package com.example.nba_app_project
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
 
-     var teamList = emptyList<TeamsItem>()
-     var playerList = emptyList<Player>()
+     private var playerList = mutableListOf<Player>()
 
-    fun setData(teamList: List<TeamsItem>, position: Int){
-        this.teamList = teamList
-        this.playerList = teamList[position].players
+    fun setData(playerList: MutableList<Player>){
+        this.playerList = playerList
         notifyDataSetChanged()
     }
 
@@ -33,6 +32,7 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
+        Log.d("Tag","test")
         "${playerList[position].first_name} ${playerList[position].last_name}".also { holder.Name.text = it }
         holder.position.text = "Pos: "+playerList[position].position
         holder.number.text = "Num: "+playerList[position].number.toString()
