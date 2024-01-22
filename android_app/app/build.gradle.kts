@@ -68,6 +68,7 @@ dependencies {
     testImplementation("androidx.test.ext:junit:1.1.3")
     testImplementation("androidx.test.ext:junit:1.1.3")
     testImplementation("org.robolectric:robolectric:4.3.1")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
 
 
 

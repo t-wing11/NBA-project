@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import kotlin.reflect.KProperty
 
 
 interface TeamsApi {
@@ -13,7 +14,7 @@ interface TeamsApi {
     fun getTeams(@Query("api_key") apiKey: String): Call<List<TeamsItem>>
 }
     object RetrofitInstance{
-        val retrofit by lazy {
+        var retrofit by lazy {
             val gson = GsonBuilder()
                 .setLenient()
                 .create()
@@ -24,4 +25,14 @@ interface TeamsApi {
                 .create(TeamsApi::class.java)
     }
 }
+
+private operator fun <T> Lazy<T>.setValue(
+    retrofitInstance: RetrofitInstance,
+    property: KProperty<*>,
+    t: T
+) {
+return
+}
+
+
 

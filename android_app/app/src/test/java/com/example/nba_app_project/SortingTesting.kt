@@ -1,14 +1,32 @@
 package com.example.nba_app_project
 import org.junit.Test
 import org.mockito.kotlin.mock
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Rule
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SortingTests {
+    private lateinit var viewModel: TeamViewModel
+    private lateinit var mockRetrofitInstance: TeamsApi
 
-    lateinit var teamAdapter: TeamAdapter
+
+    @get:Rule
+    val rule = InstantTaskExecutorRule()
+
+    @Before
+    fun setUp() {
+        viewModel = TeamViewModel()
+        mockRetrofitInstance = mock()
+        RetrofitInstance.retrofit = mockRetrofitInstance
+    }
 
     @Test
     fun testSorting() {
-        teamAdapter = mock()
+
         val teamList = mutableListOf<TeamsItem>(
             TeamsItem(
                 "Beam B",
@@ -31,7 +49,23 @@ class SortingTests {
                 6
             )
         )
-        teamAdapter = TeamAdapter()
-        teamAdapter.setData(teamList)
+
+        val call: Call<List<TeamsItem>> = mock()
+        val callback: Callback<List<TeamsItem>> = mock()
+        val response: Response<List<TeamsItem>> = Response.success(teamList)
+
+        mockRetrofitInstance.getTeams("poldz123/NBA-project/master/input.json")
+        call.enqueue(callback)
+        callback.onResponse(call, response)
+
+        viewModel.getTeams("Wins")
+        viewModel.observeTeamLiveData().observeForever {
+            assertEquals(teamList.sortedByDescending { it.wins }, it)
+        }
+        viewModel.getTeams("Losses")
+        viewModel.observeTeamLiveData().observeForever {
+            assertEquals(teamList.sortedByDescending { it.losses }, it)
+        }
+
     }
 }
