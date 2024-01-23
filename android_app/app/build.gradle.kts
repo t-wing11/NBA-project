@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -56,19 +57,19 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
 // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha01")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 // ViewModel utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha01")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
     testImplementation("org.mockito:mockito-inline:2.8.47")
-    testImplementation("androidx.test.ext:junit:1.1.3")
-    testImplementation("androidx.test.ext:junit:1.1.3")
-    testImplementation("org.robolectric:robolectric:4.3.1")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("androidx.test.ext:junit:1.1.5")
+    testImplementation("androidx.test.ext:junit:1.1.5")
+    testImplementation("org.robolectric:robolectric:4.10.3")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
 
 
 

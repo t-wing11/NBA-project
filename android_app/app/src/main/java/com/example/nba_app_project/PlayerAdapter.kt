@@ -34,7 +34,7 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
         Log.d("Tag","test")
         "${playerList[position].first_name} ${playerList[position].last_name}".also { holder.Name.text = it }
-        holder.position.text = "Pos: "+playerList[position].position
-        holder.number.text = "Num: "+playerList[position].number.toString()
+        "Pos: ${playerList[position].position}".also { holder.position.text = it }
+        "Num: ${playerList[position].number}".also { holder.number.text = it }
     }
 }

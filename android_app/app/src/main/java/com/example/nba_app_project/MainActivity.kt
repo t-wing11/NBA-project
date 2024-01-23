@@ -38,13 +38,13 @@ class MainActivity : AppCompatActivity() {
         }
         sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long){
-                viewModel.getTeams(parent?.getItemAtPosition(position).toString())
+                viewModel.fetchTeams(parent?.getItemAtPosition(position).toString())
                 viewModel.observeTeamLiveData().observe(this@MainActivity, Observer {
                     teamadapter.setData(it.toMutableList())
                 })
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.getTeams( parent?.getItemAtPosition(0).toString())
+                viewModel.fetchTeams( parent?.getItemAtPosition(0).toString())
                 viewModel.observeTeamLiveData().observe(this@MainActivity, Observer {
                     teamadapter.setData(it.toMutableList())
                 })

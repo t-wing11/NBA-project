@@ -1,6 +1,7 @@
 package com.example.nba_app_project
 
 import android.content.Intent
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,15 +39,15 @@ class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
         holder.teamName.text = teamList[position].full_name
-        holder.teamWins.text = "W: "+ teamList[position].wins.toString()
-        holder.teamLosses.text = "L: "+teamList[position].losses.toString()
+        "W: ${teamList[position].wins}".also { holder.teamWins.text = it }
+        "L: ${teamList[position].losses}".also { holder.teamLosses.text = it }
+
 
         holder.teamcard.setOnClickListener{
             val intent = Intent(holder.teamcard.context, TeamPageActivity::class.java)
             intent.putExtra("team", teamList[position].full_name)
             intent.putExtra("wins", teamList[position].wins.toString())
             intent.putExtra("losses", teamList[position].losses.toString())
-            //send player info
             intent.putParcelableArrayListExtra("players", ArrayList(teamList[position].players))
             holder.teamcard.context.startActivity(intent)
         }

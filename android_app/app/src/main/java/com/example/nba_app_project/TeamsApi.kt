@@ -15,7 +15,7 @@ interface TeamsApi {
 
     companion object {
 
-        var retrofitService: TeamsApi? = null
+        private var retrofitService: TeamsApi? = null
         fun getInstance() : TeamsApi {
 
             if (retrofitService == null) {
