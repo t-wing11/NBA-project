@@ -1,13 +1,14 @@
-package com.example.nba_app_project
+package com.example.nba_app_project.api
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.nba_app_project.dataClasses.TeamsItem
 import retrofit2.Callback
 import retrofit2.Call
 import retrofit2.Response
 
-class MainRepository(private val retrofitService: TeamsApi) {
+class Repository(private val retrofitService: RetrofitService) {
 
         fun getTeams(str: String): LiveData<List<TeamsItem>> {
                 val teamLiveData = MutableLiveData<List<TeamsItem>>()

@@ -1,4 +1,4 @@
-package com.example.nba_app_project
+package com.example.nba_app_project.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -6,18 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nba_app_project.dataClasses.PlayersItem
+import com.example.nba_app_project.R
 
 class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
 
-     private var playerList = mutableListOf<Player>()
+     private var playerList = mutableListOf<PlayersItem>()
 
-    fun setData(playerList: MutableList<Player>){
+    fun setData(playerList: MutableList<PlayersItem>){
         this.playerList = playerList
         notifyDataSetChanged()
     }
 
     class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-       var Name : TextView = itemView.findViewById(R.id.First_Name)
+       var name : TextView = itemView.findViewById(R.id.full_name)
         var position : TextView = itemView.findViewById(R.id.position)
         var number : TextView = itemView.findViewById(R.id.number)
     }
@@ -33,7 +35,7 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
         Log.d("Tag","test")
-        "${playerList[position].first_name} ${playerList[position].last_name}".also { holder.Name.text = it }
+        "${playerList[position].first_name} ${playerList[position].last_name}".also { holder.name.text = it }
         "Pos: ${playerList[position].position}".also { holder.position.text = it }
         "Num: ${playerList[position].number}".also { holder.number.text = it }
     }

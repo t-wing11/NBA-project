@@ -23,7 +23,7 @@
             android:background="#50A8ED">
 
             <TextView
-                android:id="@+id/TeamName"
+                android:id="@+id/teamName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/team_name"
@@ -47,7 +47,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/losses"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TeamName"
+                app:layout_constraintTop_toBottomOf="@+id/teamName"
                 app:layout_constraintVertical_bias="0.5" />
 
             <TextView
@@ -59,7 +59,7 @@
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TeamName"
+                app:layout_constraintTop_toBottomOf="@+id/teamName"
                 app:layout_constraintVertical_bias="0.5" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

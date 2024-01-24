@@ -1,17 +1,15 @@
-package com.example.nba_app_project
+package com.example.nba_app_project.adapters
 
 import android.content.Intent
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nba_app_project.activities.PlayerListActivity
+import com.example.nba_app_project.R
+import com.example.nba_app_project.dataClasses.TeamsItem
 
 class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
@@ -22,7 +20,7 @@ class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
     }
 
     class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var teamName: TextView = itemView.findViewById(R.id.TeamName)
+        var teamName: TextView = itemView.findViewById(R.id.teamName)
         var teamWins: TextView = itemView.findViewById(R.id.wins)
         var teamLosses: TextView = itemView.findViewById(R.id.losses)
         var teamcard : CardView = itemView.findViewById(R.id.team_card)
@@ -44,7 +42,7 @@ class TeamAdapter: RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
 
         holder.teamcard.setOnClickListener{
-            val intent = Intent(holder.teamcard.context, TeamPageActivity::class.java)
+            val intent = Intent(holder.teamcard.context, PlayerListActivity::class.java)
             intent.putExtra("team", teamList[position].full_name)
             intent.putExtra("wins", teamList[position].wins.toString())
             intent.putExtra("losses", teamList[position].losses.toString())

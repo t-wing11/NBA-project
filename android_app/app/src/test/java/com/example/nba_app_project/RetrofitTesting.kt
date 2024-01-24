@@ -1,9 +1,8 @@
 package com.example.nba_app_project
-import androidx.lifecycle.LiveData
+import com.example.nba_app_project.api.RetrofitService
 import com.google.gson.GsonBuilder
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNull
-import junit.framework.TestCase.assertTrue
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -15,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class APITest {
 
     lateinit var mockWebServer: MockWebServer
-    lateinit var teamsApi: TeamsApi
+    lateinit var retrofitService: RetrofitService
 
     @Before
     fun setUp(){
@@ -23,11 +22,11 @@ class APITest {
         val gson = GsonBuilder()
             .setLenient()
             .create()
-        teamsApi = Retrofit.Builder()
+        retrofitService = Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(TeamsApi::class.java)
+            .create(RetrofitService::class.java)
     }
     @Test
     fun testSuccess(){
@@ -35,7 +34,7 @@ class APITest {
             .setResponseCode(200)
             .setBody("[]")
         mockWebServer.enqueue(response)
-        val call = teamsApi.getTeams("poldz123/NBA-project/master/input.json")
+        val call = retrofitService.getTeams()
         val actualResponse = call.execute()
         assert(actualResponse.isSuccessful)
         assert(actualResponse.body() != null && actualResponse.body()!!.isEmpty())
@@ -47,7 +46,7 @@ class APITest {
             .setResponseCode(404)
             .setBody("[]")
         mockWebServer.enqueue(response)
-        val call = teamsApi.getTeams("poldz123/NBA-project/master/input.json")
+        val call = retrofitService.getTeams()
         val actualResponse = call.execute()
         assertFalse(actualResponse.isSuccessful)
         assertNull(actualResponse.body())

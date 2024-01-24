@@ -15,4 +15,5 @@
     </string-array>
     <string name="teamPageWins">Wins: %1$s </string>
     <string name="teamPageLosses">Losses: %1$s </string>
+    <string name="full_name">Full Name</string>
 </resources>
