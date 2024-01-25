@@ -2,20 +2,20 @@ package com.example.nba_app_project
 import org.junit.Test
 import org.mockito.kotlin.mock
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.nba_app_project.api.Repository
-import com.example.nba_app_project.api.RetrofitService
 import com.example.nba_app_project.dataClasses.PlayersItem
 import com.example.nba_app_project.dataClasses.TeamsItem
+import com.example.nba_app_project.viewModel.TeamViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.mockito.Mockito.`when`
 
 class SortingTest {
     private lateinit var repository: Repository
-    private lateinit var mockRetrofitInstance: RetrofitService
+    private lateinit var viewModel: TeamViewModel
 
 
     @get:Rule
@@ -23,69 +23,47 @@ class SortingTest {
 
     @Before
     fun setUp() {
-        mockRetrofitInstance = mock()
-        repository = Repository(mockRetrofitInstance)
+        repository = mock<Repository>()
+        viewModel = TeamViewModel(repository)
+
     }
 
     @Test
     fun testSorting() {
+        val teamList : LiveData<List<TeamsItem>>
 
-        val teamList = mutableListOf<TeamsItem>(
-            TeamsItem(
-                "A",
-                1,
-                2,
-                listOf(
-                    PlayersItem("John", 101, "Doe", 5, "Guard"),
-                    PlayersItem("Jane", 102, "Smith", 10, "Forward")
-                ),
-                2
-            ),
-            TeamsItem(
-                "B",
-                2,
-                4,
-                listOf(
-                    PlayersItem("Mike", 201, "Johnson", 23, "Center"),
-                    PlayersItem("Sara", 202, "Williams", 7, "Guard")
-                ),
-                6
-            ),
-            TeamsItem(
-                "C",
-                3,
-                6,
-                listOf(
-                    PlayersItem("Bob", 301, "Brown", 15, "Forward"),
-                    PlayersItem("Mary", 302, "Jones", 3, "Center")
-                ),
-                4
+        val teamA = TeamsItem("A", 1, 1, listOf(
+            PlayersItem("Joe", 1, "smith", 1, "SG"),
+            PlayersItem("Joe", 1, "smith", 1, "SG"),
+        ), 1)
+        val teamB = TeamsItem("C", 2, 5,listOf(
+            PlayersItem("Joe", 1, "smith", 1, "SG"),
+            PlayersItem("Joe", 1, "smith", 1, "SG"),
+        ), 1 )
+        val teamC = TeamsItem("B", 3, 1, listOf(
+            PlayersItem("Joe", 1, "smith", 1, "SG"),
+            PlayersItem("Joe", 1, "smith", 1, "SG"),
+        ),3 )
 
-            )
-        )
+        teamList = MutableLiveData(listOf(teamC, teamB, teamA))
 
-        val call: Call<List<TeamsItem>> = mock()
-        val callback: Callback<List<TeamsItem>> = mock()
-        val response: Response<List<TeamsItem>> = Response.success(teamList)
+        `when`(repository.getTeams()).thenReturn(teamList)
 
+        viewModel.fetchTeams("Ascending")
 
-        repository.getTeams("Descending")
-        call.enqueue(callback)
-        callback.onResponse(call, response)
+        assertEquals(viewModel.observeTeamLiveData().value?.get(1)?.full_name, "B")
 
-        assertEquals("C", teamList[0].full_name)
+        viewModel.fetchTeams("Descending")
 
-        repository.getTeams("Wins")
-        call.enqueue(callback)
-        callback.onResponse(call, response)
+        assertEquals(viewModel.observeTeamLiveData().value?.get(0)?.full_name, "C")
 
-        assertEquals("B", teamList[0].full_name)
+        viewModel.fetchTeams("Wins")
 
+        assertEquals(viewModel.observeTeamLiveData().value?.get(0)?.full_name, "B")
 
-        repository.getTeams("Losses")
-        call.enqueue(callback)
-        callback.onResponse(call, response)
+        viewModel.fetchTeams("Losses")
 
-        assertEquals("C", teamList[0].full_name)
+        assertEquals(viewModel.observeTeamLiveData().value?.get(0)?.full_name, "C")
+
     }
 }
