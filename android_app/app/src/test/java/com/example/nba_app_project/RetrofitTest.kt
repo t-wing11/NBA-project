@@ -13,7 +13,7 @@ import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitTesting {
+class RetrofitTest {
 
     private lateinit var mockWebServer: MockWebServer
     private lateinit var retrofitService: RetrofitService

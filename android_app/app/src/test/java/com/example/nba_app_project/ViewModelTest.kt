@@ -8,12 +8,13 @@ import com.example.nba_app_project.api.Repository
 import com.example.nba_app_project.dataClasses.PlayersItem
 import com.example.nba_app_project.dataClasses.TeamsItem
 import com.example.nba_app_project.viewModel.TeamViewModel
+import junit.framework.TestCase
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.mockito.Mockito.`when`
 
-class SortingTest {
+class ViewModelTest {
     private lateinit var repository: Repository
     private lateinit var viewModel: TeamViewModel
 
@@ -26,6 +27,22 @@ class SortingTest {
         repository = mock<Repository>()
         viewModel = TeamViewModel(repository)
 
+    }
+
+    @Test
+    fun fetchTeamsSuccess(){
+
+        val teamList : LiveData<List<TeamsItem>>
+
+        val teamA = TeamsItem("A", 1, 1, listOf(
+            PlayersItem("Joe", 1, "smith", 1, "SG"),
+            PlayersItem("Joe", 1, "smith", 1, "SG"),
+        ), 1)
+
+        teamList = MutableLiveData(listOf(teamA))
+        `when`(repository.getTeams()).thenReturn(teamList)
+        viewModel.fetchTeams("Ascending")
+        TestCase.assertNotNull(viewModel.observeTeamLiveData().value)
     }
 
     @Test
