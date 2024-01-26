@@ -81,6 +81,5 @@ class ViewModelTest {
         viewModel.fetchTeams("Losses")
 
         assertEquals(viewModel.observeTeamLiveData().value?.get(0)?.full_name, "C")
-
     }
 }

@@ -21,7 +21,7 @@ class Repository(private val retrofitService: RetrofitService) {
                                 }
                         }
                         override fun onFailure(call: Call<List<TeamsItem>>, t: Throwable) {
-                                Log.d("TAG", t.message.toString())
+                                return
                         }
                 })
                 return teamData
