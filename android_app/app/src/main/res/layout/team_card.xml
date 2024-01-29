@@ -7,7 +7,7 @@
     android:layout_marginBottom="3sp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/team_card"
+        android:id="@+id/teamCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="2sp"

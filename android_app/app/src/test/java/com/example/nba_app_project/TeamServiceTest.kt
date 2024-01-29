@@ -1,5 +1,5 @@
 package com.example.nba_app_project
-import com.example.nba_app_project.api.RetrofitService
+import com.example.nba_app_project.network.TeamService
 import com.google.gson.GsonBuilder
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNotNull
@@ -13,10 +13,10 @@ import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitTest {
+class TeamServiceTest {
 
     private lateinit var mockWebServer: MockWebServer
-    private lateinit var retrofitService: RetrofitService
+    private lateinit var retrofitService: TeamService
 
     @Before
     fun setUp(){
@@ -28,7 +28,7 @@ class RetrofitTest {
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(RetrofitService::class.java)
+            .create(TeamService::class.java)
     }
     @Test
     fun testSuccess(){

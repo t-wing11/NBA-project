@@ -1,11 +1,12 @@
-package com.example.nba_app_project.activities
+package com.example.nba_app_project.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nba_app_project.adapters.PlayerAdapter
+import com.example.nba_app_project.ui.adapters.PlayerAdapter
 import com.example.nba_app_project.R
+import com.example.nba_app_project.data.TeamItem
 import com.example.nba_app_project.databinding.TeamPageBinding
 
 class PlayerListActivity : AppCompatActivity() {
@@ -18,18 +19,19 @@ class PlayerListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= TeamPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val intent = intent
+        val bundle : Bundle? = intent.extras
+        val teamItem : TeamItem?= bundle?.getParcelable("team")
         playerView()
-        updateTeam(intent)
+        updateTeam(teamItem!!)
         }
 
 
 
-    private fun updateTeam(intent: Intent){
-        binding.teamName.text = intent.getStringExtra("team")
-        binding.wins.text = getString(R.string.teamPageWins,intent.getStringExtra("wins").toString())
-        binding.losses.text = getString(R.string.teamPageLosses,intent.getStringExtra("losses").toString())
-        playerAdapter.setData(intent.getParcelableArrayListExtra("players")!!)
+    private fun updateTeam(teamItem: TeamItem){
+        binding.teamName.text = teamItem.full_name
+        binding.wins.text = getString(R.string.teamPageWins,teamItem.wins.toString())
+        binding.losses.text = getString(R.string.teamPageLosses,teamItem.losses.toString())
+        playerAdapter.setData(teamItem.players.toMutableList())
     }
 
     private fun playerView(){

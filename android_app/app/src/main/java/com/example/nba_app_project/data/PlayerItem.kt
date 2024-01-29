@@ -1,10 +1,10 @@
-package com.example.nba_app_project.dataClasses
+package com.example.nba_app_project.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PlayersItem(
+data class PlayerItem(
     val first_name: String,
     val id: Int,
     val last_name: String,
