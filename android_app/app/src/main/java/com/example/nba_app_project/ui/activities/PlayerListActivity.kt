@@ -1,6 +1,5 @@
 package com.example.nba_app_project.ui.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
@@ -28,9 +27,9 @@ class PlayerListActivity : AppCompatActivity() {
 
 
     private fun updateTeam(teamItem: TeamItem){
-        binding.teamName.text = teamItem.full_name
-        binding.wins.text = getString(R.string.teamPageWins,teamItem.wins.toString())
-        binding.losses.text = getString(R.string.teamPageLosses,teamItem.losses.toString())
+        binding.teamCard.teamName.text = teamItem.full_name
+        binding.teamCard.wins.text = getString(R.string.teamPageWins,teamItem.wins.toString())
+        binding.teamCard.losses.text = getString(R.string.teamPageLosses,teamItem.losses.toString())
         playerAdapter.setData(teamItem.players.toMutableList())
     }
 

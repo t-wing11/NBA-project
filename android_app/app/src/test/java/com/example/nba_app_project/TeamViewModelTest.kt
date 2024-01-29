@@ -8,8 +8,6 @@ import com.example.nba_app_project.network.TeamsRepository
 import com.example.nba_app_project.data.PlayerItem
 import com.example.nba_app_project.data.TeamItem
 import com.example.nba_app_project.ui.viewModel.TeamViewModel
-import junit.framework.TestCase
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
