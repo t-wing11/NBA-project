@@ -9,10 +9,10 @@ import com.example.nba_app_project.data.PlayerItem
 import com.example.nba_app_project.data.TeamItem
 
 class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private lateinit var name : TextView
-    private lateinit var textView1 : TextView
-    private lateinit var textView2 : TextView
-    lateinit var teamCard : CardView
+     lateinit var name : TextView
+     lateinit var textView1 : TextView
+     lateinit var textView2 : TextView
+     lateinit var teamCard : CardView
 
     fun bindTeamList(teamItem: TeamItem){
         name = itemView.findViewById(R.id.teamName)
