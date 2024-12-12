@@ -1,5 +1,6 @@
 package com.example.nba_app_project.ui.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,5 +28,12 @@ class PlayerAdapter: RecyclerView.Adapter<ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindPlayerList(playerList[position])
+        val bundle = Bundle()
+        holder.playerCard.setOnClickListener{
+            val intent = android.content.Intent(holder.playerCard.context, com.example.nba_app_project.ui.activities.PlayerCardActivity::class.java)
+            bundle.putParcelable("player",playerList[position])
+            intent.putExtras(bundle)
+            holder.playerCard.context.startActivity(intent)
+        }
     }
 }

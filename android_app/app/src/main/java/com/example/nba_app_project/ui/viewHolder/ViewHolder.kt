@@ -13,6 +13,7 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
      lateinit var textView1 : TextView
      lateinit var textView2 : TextView
      lateinit var teamCard : CardView
+     lateinit var playerCard : CardView
 
     fun bindTeamList(teamItem: TeamItem){
         name = itemView.findViewById(R.id.teamName)
@@ -29,6 +30,7 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         name = itemView.findViewById(R.id.full_name)
         textView1 = itemView.findViewById(R.id.position)
         textView2 = itemView.findViewById(R.id.number)
+        playerCard = itemView.findViewById(R.id.player_card)
 
         "${playerItem.first_name} ${playerItem.last_name}".also { name.text = it }
         "Pos: ${playerItem.position}".also { textView1.text = it }
